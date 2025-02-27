@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build sdm
-        run: nx build sdm --configuration=production --base-href=/sdm/
+        run: npx nx build sdm --configuration=production --base-href=/sdm/
 
       - name: Add 404 fallback for SPA routes
         run: cp dist/apps/sdm/index.html dist/apps/sdm/404.html

@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build tt-fe
-        run: nx build tt-fe --configuration=production --base-href=/tt-fe/
+        run: npx nx build tt-fe --configuration=production --base-href=/tt-fe/
 
       - name: Add 404 fallback for SPA routes
         run: cp dist/apps/tt-fe/index.html dist/apps/tt-fe/404.html

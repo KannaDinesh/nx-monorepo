@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build ssm
-        run: nx build ssm --configuration=production --base-href=/ssm/
+        run: npx nx build ssm --configuration=production --base-href=/ssm/
 
       - name: Add 404 fallback for SPA routes
         run: cp dist/apps/ssm/index.html dist/apps/ssm/404.html
