@@ -23,12 +23,12 @@ jobs:
         run: npm ci
 
       - name: Build tt-fe
-        run: npx nx build tt-fe --configuration=production --base-href=/tt-fe/
+        run: npx nx build tt-fe --configuration=production --base-href=/nx-monorepo/tt-fe/
 
       - name: Add 404 fallback for SPA routes
         run: |
-          if [ -f "dist/apps/tt-fe/index.html" ]; then
-            cp dist/apps/tt-fe/index.html dist/apps/tt-fe/404.html
+          if [ -f "dist/apps/tt-fe/browser/index.html" ]; then
+            cp dist/apps/tt-fe/browser/index.html dist/apps/tt-fe/browser/404.html
           else
             echo "⚠️ Warning: index.html not found! Skipping 404.html copy."
           fi
@@ -38,5 +38,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: dist/apps/tt-fe
+          publish_dir: dist/apps/tt-fe/browser
           keep_files: true

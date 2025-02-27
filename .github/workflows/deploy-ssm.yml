@@ -2,9 +2,9 @@ name: Deploy ssm to GitHub Pages
 on:
   workflow_dispatch: # Manual trigger only
 permissions:
-  contents: write # Allow pushing to gh-pages branch
+  contents: write
 concurrency:
-  group: pages # Prevent parallel Pages deployments
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -23,12 +23,15 @@ jobs:
         run: npm ci
 
       - name: Build ssm
-        run: npx nx build ssm --configuration=production --base-href=/ssm/
+        run: npx nx build ssm --configuration=production --base-href=/nx-monorepo/ssm/
+
+      - name: Debug build output
+        run: ls -la dist/apps/ssm/browser
 
       - name: Add 404 fallback for SPA routes
         run: |
-          if [ -f "dist/apps/ssm/index.html" ]; then
-            cp dist/apps/ssm/index.html dist/apps/ssm/404.html
+          if [ -f "dist/apps/ssm/browser/index.html" ]; then
+            cp dist/apps/ssm/browser/index.html dist/apps/ssm/browser/404.html
           else
             echo "⚠️ Warning: index.html not found! Skipping 404.html copy."
           fi
@@ -38,5 +41,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: dist/apps/ssm
+          publish_dir: dist/apps/ssm/browser
           keep_files: true
