@@ -26,7 +26,12 @@ jobs:
         run: npx nx build sdm --configuration=production --base-href=/sdm/
 
       - name: Add 404 fallback for SPA routes
-        run: cp dist/apps/sdm/index.html dist/apps/sdm/404.html
+        run: |
+          if [ -f "dist/apps/sdm/index.html" ]; then
+            cp dist/apps/sdm/index.html dist/apps/ssm/404.html
+          else
+            echo "⚠️ Warning: index.html not found! Skipping 404.html copy."
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
