@@ -1,0 +1,4 @@
+{
+	"sdm": "http://localhost:4201/remoteEntry.json",
+	"ssm": "http://localhost:4202/remoteEntry.json"
+}
