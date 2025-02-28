@@ -42,4 +42,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: dist/apps/sdm/browser
+          destination_dir: sdm
           keep_files: true
